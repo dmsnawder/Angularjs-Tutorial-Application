@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+<head>
+    <meta charset="UTF-8">
+    <title>Flatlanders Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-controller="StoreController as store" style="background-color: hsl(0, 0%, 97%)">
+
+	<div class="header">
+		<h1><b>Flatlanders Crafted Gems</b></h1>
+		<h2><b>- an Angular store -</b></h2>
+	</div>
+
+	<!-- Products Container -->
+	<div class="container">
+		<!-- Product Container -->
+		<div class="row" ng-repeat="product in store.products | orderBy:'price'">
+			<!-- Product -->
+			<div class="product">
+				<h3> 
+					<b>{{product.name}}</b>
+					<em class="pull-right"> {{product.price | currency}} </em>
+				</h3>
+
+				<!-- Image Gallery -->
+				<div class="gallery">
+					<div class="main-image">
+						<img ng-src="{{product.images[0]}}"/>
+					</div>
+					<ul class="img-thumbnails clearfix">
+						<li class="small-image pull-left thumbnail ng-scope" ng-repeat="image in product.images">
+							<img ng-src="{{image}}"/>
+						</li>
+					</ul>
+				</div>
+
+				<!-- Tabs and Product Details -->
+				<section ng-controller="PanelController as panel">
+					<ul class="nav nav-pills">
+						<li ng-class="{ active: panel.isSelected(1) }">
+							<a href ng-click="panel.selectTab(1)"><b>Description</b></a></li>
+						<li ng-class="{ active: panel.isSelected(2) }">
+							<a href ng-click="panel.selectTab(2)"><b>Specifications</b></a></li>
+						<li ng-class="{ active: panel.isSelected(3) }">
+							<a href ng-click="panel.selectTab(3)"><b>Reviews</b></a></li>
+					</ul>
+					<!-- Description -->
+					<div class="panel" ng-show="panel.isSelected(1)">
+						<h4><b>Description</b></h4>
+						<blockquote>{{product.description}}</blockquote>
+					</div>
+					<!-- Specifications -->
+					<div class="panel" ng-show="panel.isSelected(2)">
+						<h4><b>Specifications</b></h4>
+						<blockquote>
+							<h4>Shine: {{product.shine}}</h4>
+							<h4>Rarity: {{product.rarity}}</h4>
+							<h4>Faces: {{product.faces}}</h4>
+						</blockquote>
+					</div>
+					<!-- Reviews -->
+					<div class="panel" ng-show="panel.isSelected(3)">
+						<h4><b>Reviews</b></h4>
+						<blockquote ng-repeat="review in product.reviews">
+							<b>{{review.stars}} Stars</b>
+							<h5>By <b>{{review.author}}</b> on {{review.createdOn | date: "shortDate"}}</h5>
+							<h5>{{review.body}}</h5>
+						</blockquote>
+						<br><br>
+
+						<!-- Submit Review Form -->
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+							ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+							<blockquote>
+								<b>{{reviewCtrl.review.stars}} Stars</b>
+								<h5>By <b>{{reviewCtrl.review.author}}</b> on {{today | date: "shortDate"}}</h5>
+								<h5>{{reviewCtrl.review.body}}</h5>
+							</blockquote>
+
+							<h4><b>Submit a Review</b></h4>
+							<fieldset class="form-group">
+								<select class="form-control" ng-options="stars for stars in [5,4,3,2,1]" ng-model="reviewCtrl.review.stars" title="stars" required>
+									<option value="">Rate the Product</option>
+								</select>
+							</fieldset>
+
+							<fieldset class="form-group">
+								<div class="form-group">
+								    <input type="email" class="form-control" id="email" ng-model="reviewCtrl.review.author" placeholder="youremail@email.com" required>
+								</div>
+							</fieldset>
+
+							<fieldset class="form-group">
+								<textarea class="form-control" ng-model="reviewCtrl.review.body" rows="2" cols="60" id="review" placeholder="Write a short review of the product" required>
+								</textarea>
+							</fieldset>
+
+							<fieldset class="form-group">
+								<input type="submit" class="btn btn-info" value="Submit">
+								<div> reviewForm is {{reviewForm.$valid}} </div>
+							</fieldset>
+						</form>
+					</div>
+				</section>
+
+				<br>
+				<button ng-show="product.canPurchase"> Add to Cart </button>
+				<hr>
+			</div>
+			<!-- Product -->
+		</div>
+		<!-- Product Container -->
+	</div>
+	<!-- Products Container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>

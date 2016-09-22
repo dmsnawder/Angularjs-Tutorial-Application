@@ -1,0 +1,71 @@
+.header {
+	text-align: center;
+}
+
+.container {
+	max-width: 550px;
+	margin: 0px auto;
+}
+
+.product {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.main-image {
+	display: block;
+	margin: 0 auto 10px;
+	height: 200px;
+	width: 200px;
+}
+
+.small-image {
+	width: 25%;
+}
+
+.img-thumbnails {
+	width: 200px;
+	margin: 0 auto 10px;
+}
+
+.gallery ul {
+	padding: 0;
+}
+
+.img-thumbnails .thumbnail {
+	margin-right: 15px;
+	border: 0 none;
+}
+
+.gallery ul li {
+	list-style: outside none none;
+}
+
+.nav-pills li a {
+	color: #ac3973;
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+	background-color: #ac3973;
+}
+
+.panel {
+	background-color: hsl(0, 0%, 97%);
+	margin-top: 20px;
+	box-shadow: none;
+}
+
+.panel p {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.ng-invalid.ng-dirty {
+	border-color: #fa787e;
+}
+
+.ng-valid.ng-dirty {
+	border-color: #78fa89;
+}
