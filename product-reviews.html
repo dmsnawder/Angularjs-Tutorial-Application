@@ -1,0 +1,39 @@
+						<h4><b>Reviews</b></h4>
+						<blockquote ng-repeat="review in product.reviews">
+							<b>{{review.stars}} Stars</b>
+							<h5>By <b>{{review.author}}</b> on {{review.createdOn | date: "shortDate"}}</h5>
+							<h5>{{review.body}}</h5>
+						</blockquote>
+						<br><br>
+
+						<!-- Submit Review Form -->
+						<form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+							ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+							<blockquote>
+								<b>{{reviewCtrl.review.stars}} Stars</b>
+								<h5>By <b>{{reviewCtrl.review.author}}</b> on {{today | date: "shortDate"}}</h5>
+								<h5>{{reviewCtrl.review.body}}</h5>
+							</blockquote>
+
+							<h4><b>Submit a Review</b></h4>
+							<fieldset class="form-group">
+								<select class="form-control" ng-options="stars for stars in [5,4,3,2,1]" ng-model="reviewCtrl.review.stars" title="stars" required>
+									<option value="">Rate the Product</option>
+								</select>
+							</fieldset>
+
+							<fieldset class="form-group">
+								<div class="form-group">
+								    <input name="author" type="email" class="form-control" ng-model="reviewCtrl.review.author" placeholder="youremail@email.com" required>
+								</div>
+							</fieldset>
+
+							<fieldset class="form-group">
+								<textarea class="form-control" ng-model="reviewCtrl.review.body" rows="2" cols="60" id="review" placeholder="Write a short review of the product" required>
+								</textarea>
+							</fieldset>
+
+							<fieldset class="form-group">
+								<input type="submit" class="btn btn-info" value="Submit">
+							</fieldset>
+						</form>
