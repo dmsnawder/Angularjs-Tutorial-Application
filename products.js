@@ -1,64 +1,80 @@
-(function() {
-	var app = angular.module('store-products', [ ]);
+var gems = [
+	{
+		name: "Amethyst",
+		price: 110.50,
+		shine: 8,
+      	rarity: 7,
+      	faces: 14,
+		description: "Some gems have hidden qualities beyond their luster, beyond their shine... Amethyst is one of those gems.",
+		images: [
+			"images/gem-02.png",
+			"images/gem-01.png",
+			"images/gem-04.png",
+		],
+		reviews: [{
+	        stars: 3,
+	        body: "I think this gem was just OK, could honestly use more shine, IMO.",
+	        author: "JimmyDean@example.org",
+	        createdOn: 1398491980837
+	    }, {
+	        stars: 4,
+	        body: "Any gem with 12 faces is for me!",
+	        author: "gemsRock@example.org",
+	        createdOn: 1398491980837
+	    }],
+	   	canPurchase: true,
+	},
 
-	app.directive('productTitle', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'product-title.html'
-		};
-	});
+	{
+		name: "Bloodstone",
+		price: 22.90,
+		shine: 9,
+      	rarity: 6,
+      	faces: 12,
+		description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
+		images: [
+			"images/gem-05.png",
+			"images/gem-03.png",
+			"images/gem-09.png",
+		],
+		reviews: [{
+	        stars: 3,
+	        body: "I think this gem was just OK, could honestly use more shine, IMO.",
+	        author: "JimmyDean@example.org",
+	        createdOn: 1397491980837
+	    }, {
+	        stars: 4,
+	        body: "Any gem with 12 faces is for me!",
+	        author: "gemsRock@example.org",
+	        createdOn: 1397491980837
+	    }],
+		canPurchase: false,
+	},
 
-	app.directive('productDescription', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'product-description.html'
-		};
-	});
+	{
+		name: "Zircon",
+		price: 1100,
+		shine: 70,
+      	rarity: 2,
+      	faces: 6,
+		description: "Zircon is our most coveted and sought after gem. You will pay much to be the proud owner of this gorgeous and high shine gem.",
+		images: [
+			"images/gem-07.png",
+			"images/gem-06.png",
+			"images/gem-08.png",
+		],
+		reviews: [{
+	        stars: 3,
+	        body: "I think this gem was just OK, could honestly use more shine, IMO.",
+	        author: "JimmyDean@example.org",
+	        createdOn: 1397491980837
+	    }, {
+	        stars: 4,
+	        body: "Any gem with 12 faces is for me!",
+	        author: "gemsRock@example.org",
+	        createdOn: 1397491980837
+	    }],
+		canPurchase: true,
+	}
+];
 
-	app.directive('productSpecs', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'product-specs.html'
-		};
-	});
-
-	app.directive('productReviews', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'product-reviews.html'
-		};
-	});
-
-	app.directive('productPanels', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'product-panels.html',
-			controller:function() {
-				this.tab = 1;
-
-				this.selectTab = function(setTab) {
-					this.tab = setTab;
-				};
-
-				this.isSelected = function(checkTab) {
-					return this.tab === checkTab;
-				};
-			},
-			controllerAs: 'panel'
-		};
-	});
-
-	app.directive('productGallery', function() {
-		return {
-			restrict: 'E',
-			templateUrl: 'product-gallery.html',
-			controller: function() {
-				this.current = 0;
-    			this.setCurrent = function(imageNumber){
-      				this.current = imageNumber || 0;
-    			};
-			},
-			controllerAs: 'gallery'
-		}
-	});
-})();

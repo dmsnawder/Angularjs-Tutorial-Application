@@ -33,7 +33,8 @@
 				<product-panels></product-panels>
 
 				<br>
-				<button class="btn btn-info" ng-show="product.canPurchase"> Add to Cart </button>
+				<button class="btn btn-primary" ng-show="product.canPurchase"> Add to Cart </button>
+				<button class="btn btn-danger" ng-show="!product.canPurchase"> Sold Out </button>
 				<hr>
 			</div>
 			<!-- Product -->
@@ -45,5 +46,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="products.js"></script>
+    <script type="text/javascript" src="product-info.js"></script>
 </body>
 </html>
